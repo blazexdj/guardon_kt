@@ -1969,7 +1969,7 @@ public void setServerLock(boolean serverLock) {
 	 	 
 	 userService.insertUser(user);
 	 
-	 return "userLogin";
+	 return "insertUserDone";
  }
  
  @RequestMapping("/updateUser.do")

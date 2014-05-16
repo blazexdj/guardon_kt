@@ -27,6 +27,11 @@
 		        return false;
 		    }    
 		};
+		function submitForm2() {
+			var form = document.forms['password_form'];
+			form.action = 'index.do';
+			form.submit();
+		}
 
 		function submitForm() {
 			var form = document.forms['password_form'];
@@ -251,7 +256,7 @@ addLoadEvent(function() {
       <br>
    <div id="apDiv1">
   <input type="button" value="가입" class="button" onclick="submitForm();"/>
-  <input type="button" value="취소" class="button" onclick="javascript:history.back()" />
+  <input type="button" value="취소" class="button" onclick="submitForm2();" />
   <br>
   <br>
    </div>

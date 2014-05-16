@@ -2201,7 +2201,7 @@ public void setServerLock(boolean serverLock) {
 			*/
 			
 			userType = userService.getUserType(userId);
-			
+			System.out.println(userType);
 			Log log = new Log();
 			log.setLoginTime(loginTime);
 			log.setUserId(userId);

@@ -304,6 +304,24 @@ public void setServerLock(boolean serverLock) {
 		return true;
  }
  
+ @RequestMapping("findId.do")
+ public String findId(HttpServletRequest request) throws Exception{
+	 return "findId";
+ }
+ 
+ @RequestMapping("getId.do")
+ public String getId(HttpServletRequest request) throws Exception{
+	 String userName, companyNumber;
+	 userName = request.getParameter("userName");
+	 companyNumber = request.getParameter("companyNumber");
+	 
+	 if (serverLock) {
+		
+	}
+	 
+	 return "getId";
+ }
+ 
  @RequestMapping("test.do")
  //@Scheduled(fixedDelay=5000)
  public void test(HttpServletRequest request) throws Exception{

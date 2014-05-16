@@ -104,4 +104,14 @@ public class UserServiceImpl implements UserService {
 		return userDAO.isActive(userId);
 	}
 
+	@Override
+	public String getId(String userName, String companyNumber) throws Exception {
+		return userDAO.getId(userName, companyNumber);
+	}
+
+	@Override
+	public String getPwd(String userId, String userEmail) throws Exception {
+		return userDAO.getPwd(userId, userEmail);
+	}
+
 }

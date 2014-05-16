@@ -135,4 +135,16 @@
 		WHERE userId = #value#
 	</select>
 	
+	<select id="getId" parameterClass="string" resultClass="string" >
+		SELECT userId
+		FROM tbl_user
+		WHERE userName = #userName# AND companyNumber= #companyNumber#
+	</select>
+	
+	<select id="getPwd" parameterClass="string" resultClass="string" >
+		SELECT userPwd
+		FROM tbl_user
+		WHERE userId = #userId# AND userEmail= #userEmail#
+	</select>
+	
 </sqlMap>

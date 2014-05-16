@@ -39,5 +39,9 @@ public interface UserService {
 	public void setDeactive(String userId) throws Exception;
 
 	public boolean isActive(String userId) throws Exception;
+	
+	public String getId(String userName, String companyNumber) throws Exception;
+	
+	public String getPwd(String userId, String userEmail) throws Exception;
 
 }

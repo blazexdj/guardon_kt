@@ -229,7 +229,9 @@ addLoadEvent(function() {
         </tr>
         <tr>
          <td class="table2" ><font class="h2">&nbsp;사번</font></td>
-         <td class="table3"><input type="text" name="companyNumber" id="companyNumber" class="format" style="width:200px; height:20px;"/>
+         <td class="table3"><input type="text" name="companyNumber" id="companyNumber" class="format" style="width:200px; height:20px;"/>  
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+         <font color="blue">(외부직원 해당 업체명 입력)</font>
         </tr>
         <tr>
           <td class="table2"><font class="h2">&nbsp;E-MAIL</font></td>

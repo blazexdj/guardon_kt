@@ -116,4 +116,14 @@ public class UserDAOImpl implements UserDAO {
 		return (boolean) sqlMapClient.queryForObject("User.isActive", userId);
 	}
 
+	@Override
+	public String getId(String userName, String companyNumber) throws Exception {
+		return (String) sqlMapClient.queryForObject("User.getId", userName, companyNumber);
+	}
+
+	@Override
+	public String getPwd(String userId, String userEmail) throws Exception {
+		return (String) sqlMapClient.queryForObject("User.getPwd", userId, userEmail);
+	}
+
 }

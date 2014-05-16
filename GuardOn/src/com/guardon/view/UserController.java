@@ -1967,10 +1967,69 @@ public void setServerLock(boolean serverLock) {
 	 user.setPhoneNumber(phoneNumber);
 	 user.setJoinDate(joinDate);
 	 	 
-	 userService.insertUser(user);
-	 
-	 return "insertUserDone";
+	 if (userType.equals("admin"))
+	 {
+		 userService.insertJoinRequest(user);
+		 request.setAttribute("message", "회원 가입 요청이 완료되었습니다.");
+		 return "interPage";		 
+	 }
+	 else
+	 {
+		 userService.insertUser(user);	 
+		 request.setAttribute("message", "회원 가입이 완료되었습니다.");
+		 return "interPage";
+	 }
  }
+ 
+ @RequestMapping("/joinUserList.do")
+	public String joinUserList(HttpServletRequest request, HttpSession session)throws Exception {
+		ArrayList<User> joinUserList = new ArrayList<User>();
+
+		String pageParam = request.getParameter("page");
+		if (pageParam == null || pageParam.equals("")) {
+			pageParam = "1";
+		}
+
+		joinUserList = userService.getJoinUserList(Integer.parseInt(pageParam));
+		
+		// 혹시 안될 경우 getJoinUserListCount 구현해야함
+		int count = joinUserList.size();
+
+		request.setAttribute("joinUserListCnt", count);
+		request.setAttribute("joinUserList", joinUserList);
+		request.setAttribute("page", Integer.parseInt(pageParam));
+
+		return "joinUserList";
+	}
+ 
+ @RequestMapping("/approvalJoinReq.do")
+	public String approvalJoinReq(HttpServletRequest request, HttpSession session)throws Exception {
+	 
+	 String[] userId;
+	 
+	 userId = request.getParameterValues("userId");
+	 
+	 for (int i = 0; i < userId.length; i++) {
+		userService.setJoinApproved(userId[i]);
+	}
+	 
+	 request.setAttribute("message", "총 "+userId.length+"건의 요청을 수락하였습니다.");
+	 return "interPage";
+ }
+ 
+	@RequestMapping("/rejectJoinReq.do")
+	public String rejectJoinReq(HttpServletRequest request, HttpSession session)	throws Exception {
+		String[] userId;
+
+		userId = request.getParameterValues("userId");
+
+		for (int i = 0; i < userId.length; i++) {
+			userService.deleteUser(userId[i]);
+		}
+
+		request.setAttribute("message", "총 " + userId.length	+ "건의 요청을 반려하였습니다.");
+		return "interPage";
+	}
  
  @RequestMapping("/updateUser.do")
  public String updateUser(HttpServletRequest request, HttpSession session) throws Exception{	 
@@ -2146,8 +2205,24 @@ public void setServerLock(boolean serverLock) {
 			Log log = new Log();
 			log.setLoginTime(loginTime);
 			log.setUserId(userId);
+			
+			if (userType.equals("super")) {
+				if (userPwd.equals(userService.getUserPwd(userId).toString())) {
+					System.out.println("success");
 
-			if (userType.equals("admin")) {
+					userService.setActive(userId);
+					
+					logService.setLoginTime(log);
+
+					System.out.println(userType);
+					
+					session.setAttribute("userId", userId);
+					return "superHome";
+				} else {
+					System.out.println("failure");
+				}
+
+				else if (userType.equals("admin")) {
 				if (userPwd.equals(userService.getUserPwd(userId).toString())) {
 					System.out.println("success");
 

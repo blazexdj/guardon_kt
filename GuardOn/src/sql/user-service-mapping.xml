@@ -22,14 +22,38 @@
 		<result property="approvalDate" column="approvalDate" jdbcType="DATE" />
 		<result property="outEndPerDate" column="outEndPerDate" jdbcType="DATE"/>
 		<result property="userLogoutDate" column="userLogoutDate" jdbcType="DATE"/>
+		<result property="joinApproved" column="joinApproved" />
+		
 		
 		
 	</resultMap>
 	
+	<insert id="insertJoinRequest" parameterClass="user">
+		INSERT INTO 
+		tbl_user(userName, userId, userPwd, userDepartment, userLevel, companyNumber, userEmail, phoneNumber, joinDate, totalRequestCount, totalApprovalCount, totalRejectCount, userType, joinApproved)
+		VALUES(#userName#, #userId#, #userPwd#, #userDepartment#, #userLevel#, #companyNumber#, #userEmail#, #phoneNumber#, #joinDate#, 0, 0, 0, #userType#, 'unchecked');
+	</insert>
+	
+	<update id="setJoinApproved" parameterClass="string">
+		UPDATE tbl_user 
+		SET joinApproved = 'approved'
+		WHERE userId = #userId#
+	</update>
+	
+	<delete id="deleteUser" parameterClass="string">
+		DELETE FROM tbl_user
+		WHERE user = #userId#
+	</delete>
+	
+	<select id="getJoinUserList" parameterClass="int" resultClass="user">
+		SELECT userType, userName, userDepartment, userLevel, userId, userEmail, phoneNumber
+		FROM tbl_user; 
+	</select>
+	
 	<insert id="insertUser" parameterClass="user">
 		INSERT INTO 
-		tbl_user(userName, userId, userPwd, userDepartment, userLevel, companyNumber, userEmail, phoneNumber, joinDate, totalRequestCount, totalApprovalCount, totalRejectCount, userType)
-		VALUES(#userName#, #userId#, #userPwd#, #userDepartment#, #userLevel#, #companyNumber#, #userEmail#, #phoneNumber#, #joinDate#, 0, 0, 0, #userType#);
+		tbl_user(userName, userId, userPwd, userDepartment, userLevel, companyNumber, userEmail, phoneNumber, joinDate, totalRequestCount, totalApprovalCount, totalRejectCount, userType, joinApproved)
+		VALUES(#userName#, #userId#, #userPwd#, #userDepartment#, #userLevel#, #companyNumber#, #userEmail#, #phoneNumber#, #joinDate#, 0, 0, 0, #userType#, 'approved');
 	</insert>
 	
 	<update id="updateUser" parameterClass="user">

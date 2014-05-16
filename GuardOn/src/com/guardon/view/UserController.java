@@ -2221,6 +2221,7 @@ public void setServerLock(boolean serverLock) {
 				} else {
 					System.out.println("failure");
 				}
+			}
 
 				else if (userType.equals("admin")) {
 				if (userPwd.equals(userService.getUserPwd(userId).toString())) {

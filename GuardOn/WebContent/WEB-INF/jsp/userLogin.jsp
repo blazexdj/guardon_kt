@@ -28,8 +28,6 @@
 아 이 디	<input type="text" name="userId" id="userId" />
 <br/>
 비밀번호	<input type="password" name="userPwd" id="userPwd" />
-<br/>
-<br/>
 </pre>
 <br/>
 <br/>
@@ -41,6 +39,7 @@
 </center>
 <br/>
 <br/>
+<a href="findId.do" style="color: green;">아이디 찾기 </a>/<a href="findPwd.do" style="color: green;"> 비밀번호 찾기</a>
 </form>
 <!-- 
 <form action="userJoin.do" method="post">

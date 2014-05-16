@@ -2007,9 +2007,10 @@ public void setServerLock(boolean serverLock) {
 	 
 	 String[] userId;
 	 
-	 userId = request.getParameterValues("userId");
+	 userId = request.getParameterValues("temp");
 	 
 	 for (int i = 0; i < userId.length; i++) {
+		 System.out.println(userId[i]);
 		userService.setJoinApproved(userId[i]);
 	}
 	 
@@ -2020,10 +2021,11 @@ public void setServerLock(boolean serverLock) {
 	@RequestMapping("/rejectJoinReq.do")
 	public String rejectJoinReq(HttpServletRequest request, HttpSession session)	throws Exception {
 		String[] userId;
-
-		userId = request.getParameterValues("userId");
-
+		
+		userId = request.getParameterValues("temp");
+		
 		for (int i = 0; i < userId.length; i++) {
+			System.out.println(userId[i]);
 			userService.deleteUser(userId[i]);
 		}
 
@@ -2180,7 +2182,7 @@ public void setServerLock(boolean serverLock) {
  }
  
 	@RequestMapping(method = RequestMethod.POST, value = "/userLogin.do")
-	public String userLogin(HttpServletRequest request, HttpSession session) {
+	public String userLogin(HttpServletRequest request, HttpSession session) throws Exception{
 		String userPwd, userId, userType;
 		String loginFailed = null;
 		
@@ -2190,8 +2192,11 @@ public void setServerLock(boolean serverLock) {
 
 		userPwd = request.getParameter("userPwd");
 		userId = request.getParameter("userId");
+		User user = new User();
 
 		try {
+			user = userService.getUserBasicInfo(userId);
+			
 			if (userPwd == null || userId == null)
 				return "errorLogin";
 			
@@ -2225,21 +2230,27 @@ public void setServerLock(boolean serverLock) {
 
 				else if (userType.equals("admin")) {
 				if (userPwd.equals(userService.getUserPwd(userId).toString())) {
-					System.out.println("success");
+					if ( user.getJoinApproved().equals("approved")) {
+						System.out.println("success");
 
-					userService.setActive(userId);
+						userService.setActive(userId);
+						
+						logService.setLoginTime(log);
+
+						System.out.println(userType);
+						// ArrayList<String> loginInfo = new ArrayList<>();
+
+						//String userIdType = userId + "," + userType;
+						// loginInfo.add(userIdType);
+
+						session.setAttribute("userId", userId);
+						return "adminHome";
+					}else if(user.getJoinApproved().equals("unchecked")){
+						return "errorLogin";
+					}
 					
-					logService.setLoginTime(log);
-
-					System.out.println(userType);
-					// ArrayList<String> loginInfo = new ArrayList<>();
-
-					//String userIdType = userId + "," + userType;
-					// loginInfo.add(userIdType);
-
-					session.setAttribute("userId", userId);
-					return "adminHome";
-				} else {
+					}
+					else {
 					System.out.println("failure");
 				}
 

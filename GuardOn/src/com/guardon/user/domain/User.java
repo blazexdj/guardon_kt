@@ -32,10 +32,18 @@ public class User {
  private String userEmail;
  private String pwdLevel;
  private Timestamp userLogoutDate;
- 
+ private String joinApproved;
 
  
- public String getCompanyNumber() {
+ public String getJoinApproved() {
+	return joinApproved;
+}
+
+public void setJoinApproved(String joinApproved) {
+	this.joinApproved = joinApproved;
+}
+
+public String getCompanyNumber() {
 	return companyNumber;
 }
 

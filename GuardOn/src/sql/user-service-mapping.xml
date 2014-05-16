@@ -42,18 +42,19 @@
 	
 	<delete id="deleteUser" parameterClass="string">
 		DELETE FROM tbl_user
-		WHERE user = #userId#
+		WHERE userId = #userId#
 	</delete>
 	
 	<select id="getJoinUserList" parameterClass="int" resultClass="user">
 		SELECT userType, userName, userDepartment, userLevel, userId, userEmail, phoneNumber
-		FROM tbl_user; 
+		FROM tbl_user
+		WHERE userType='admin' AND joinApproved='unchecked'
 	</select>
 	
 	<insert id="insertUser" parameterClass="user">
 		INSERT INTO 
 		tbl_user(userName, userId, userPwd, userDepartment, userLevel, companyNumber, userEmail, phoneNumber, joinDate, totalRequestCount, totalApprovalCount, totalRejectCount, userType, joinApproved)
-		VALUES(#userName#, #userId#, #userPwd#, #userDepartment#, #userLevel#, #companyNumber#, #userEmail#, #phoneNumber#, #joinDate#, 0, 0, 0, #userType#, 'approved');
+		VALUES(#userName#, #userId#, #userPwd#, #userDepartment#, #userLevel#, #companyNumber#, #userEmail#, #phoneNumber#, #joinDate#, 0, 0, 0, #userType#, 'unchecked');
 	</insert>
 	
 	<update id="updateUser" parameterClass="user">
@@ -69,7 +70,7 @@
 	</update>
 	
 	<select id="getUserBasicInfo" parameterClass="string" resultClass="user">
-		SELECT userName, userDepartment, userLevel, companyNumber, userEmail, phoneNumber 
+		SELECT userName, userDepartment, userLevel, companyNumber, userEmail, phoneNumber, joinApproved
 		FROM tbl_user
 		WHERE userId = #value#
 	</select>

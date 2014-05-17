@@ -304,12 +304,24 @@ public void setServerLock(boolean serverLock) {
 		return true;
  }
  
+ @RequestMapping("invalidSession.do")
+ public String invalidSession(HttpServletRequest request, HttpSession session) throws Exception {
+	 String userId = (String)session.getAttribute("userId");
+	 String userType = userService.getUserType(userId);
+	 session.invalidate();
+	 if (userType.equals("admin") || userType.equals("super"))
+		 return "adminHome";
+	 else if (userType.equals("user"))
+		 return "nomalUserHome";
+	 else if (userType.equals("outUser"))
+		 return "outUserHome";
+	 else
+		 return "";
+ }
+ 
  @RequestMapping("findId.do")
-	public String findId(HttpServletRequest request, HttpSession session)	throws Exception {
-		if (session.getAttribute("userId") == null) {
-			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
-		}
+	public String findId(HttpServletRequest request)	throws Exception {
+		
 	 return "findId";
  }
  
@@ -400,7 +412,11 @@ public void setServerLock(boolean serverLock) {
  }
  
  @RequestMapping("option.do")
- public String option(HttpServletRequest request){
+ public String option(HttpServletRequest request, HttpSession session){
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 
 	 String loginFailedCount=null, otpTimeLimit=null, pwdLength=null, pwdComplexity=null, autoLogout=null, approvedTimeLimit=null;
 	 	
@@ -429,7 +445,11 @@ public void setServerLock(boolean serverLock) {
 	}
  
  @RequestMapping("updateOption.do")
- public String updateOption(HttpServletRequest request){
+ public String updateOption(HttpServletRequest request, HttpSession session){
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 String pwdComplexity;
 	 int pwdLength, otpTimeLimit, loginFailedCount, approvedTimeLimit;
 	 Option option = new Option();
@@ -460,6 +480,10 @@ public void setServerLock(boolean serverLock) {
  
  @RequestMapping("outSendRequest.do")
  public String outSendRequest(HttpServletRequest request, HttpSession session){
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 Request rq = new Request();
 	 Map<String, String> map = new HashMap<>();
 	 
@@ -530,6 +554,10 @@ public void setServerLock(boolean serverLock) {
  
  @RequestMapping("outPeriodPwdList.do")
  public String outPeriodPwdList(HttpServletRequest request, HttpSession session) throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 String userId=session.getAttribute("userId").toString();
 	 
 	 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -548,6 +576,10 @@ public void setServerLock(boolean serverLock) {
  
  @RequestMapping("periodPwdList.do")
  public String periodPwdList(HttpServletRequest request, HttpSession session) throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 String userId=session.getAttribute("userId").toString();
 	 
 	 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -567,6 +599,10 @@ public void setServerLock(boolean serverLock) {
  
  @RequestMapping("outPeriodPwdApproval.do")
  public String outPeriodPwdApproval(HttpServletRequest request, HttpSession session){
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 Request rq = new Request();
 	 Map<String, String> map = new HashMap<>();
 	 String approved;
@@ -622,6 +658,10 @@ public void setServerLock(boolean serverLock) {
  
  @RequestMapping("periodPwdApproval.do")
  public String periodPwdApproval(HttpServletRequest request, HttpSession session){
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 Request rq = new Request();
 	 Map<String, String> map = new HashMap<>();
 	 
@@ -677,6 +717,10 @@ public void setServerLock(boolean serverLock) {
  
  @RequestMapping("periodPwd.do")
  public String periodPwd(HttpServletRequest request, HttpSession session) throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 
 	 String startDate, endDate;
 
@@ -695,7 +739,11 @@ public void setServerLock(boolean serverLock) {
  
  
  @RequestMapping ("outPeriodPwdServerSelect.do")
- public String outPeriodServerList(HttpServletRequest request) throws Exception{
+ public String outPeriodServerList(HttpServletRequest request, HttpSession session) throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 
 	 String pageParam = request.getParameter("page");
 		if(pageParam==null || pageParam.equals("")){
@@ -712,7 +760,11 @@ public void setServerLock(boolean serverLock) {
  }
  
  @RequestMapping ("periodPwdServerSelect.do")
- public String periodServerList(HttpServletRequest request) throws Exception{
+ public String periodServerList(HttpServletRequest request, HttpSession session) throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 
 	 String pageParam = request.getParameter("page");
 		if(pageParam==null || pageParam.equals("")){
@@ -885,7 +937,11 @@ public void setServerLock(boolean serverLock) {
   }
   
   @RequestMapping("changeAllList.do")
-  public String changeAllList(HttpServletRequest request) throws Exception{
+  public String changeAllList(HttpServletRequest request, HttpSession session) throws Exception{
+	  if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	  ArrayList<Request> changeAllList = new ArrayList<Request>();
 	  changeAllList=requestService.getApprovedReq();
 	  
@@ -894,7 +950,11 @@ public void setServerLock(boolean serverLock) {
   }
   
   @RequestMapping("changeAllPwd.do")
-  public String changeAllPwd(HttpServletRequest request){
+  public String changeAllPwd(HttpServletRequest request, HttpSession session){
+	  if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	  
 	  String temp[]=request.getParameterValues("temp");
 	  String arr[];
@@ -928,6 +988,10 @@ public void setServerLock(boolean serverLock) {
  
  @RequestMapping("/userOtp.do")
  public String makeOtp(HttpServletRequest request, HttpSession session){
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 
 		 User user = new User();
 		 MakeOTP makeOTP = new MakeOTP();
@@ -1218,6 +1282,10 @@ public void setServerLock(boolean serverLock) {
  
  @RequestMapping(method=RequestMethod.GET, value="/updateRejected.do")
  public String updateRejected(HttpSession session, HttpServletRequest request) throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 
 	 Map<String, String> map = new HashMap<>();
 	 String[] array = request.getParameterValues("temp");
@@ -1250,6 +1318,10 @@ public void setServerLock(boolean serverLock) {
  
  @RequestMapping(method=RequestMethod.GET, value="/updateApproved.do")
  public String updateApproved(HttpSession session, HttpServletRequest request) throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 int approvalSuccessCount=0;
 	 int approvalCount=0;
 	 String userOtp=null, serverName, connectId, approved;
@@ -1401,7 +1473,11 @@ public void setServerLock(boolean serverLock) {
  
  
  @RequestMapping("/outUserOtpPretreatment.do")
- public String outUserOtpPretreatment(HttpServletRequest request) throws Exception{
+ public String outUserOtpPretreatment(HttpServletRequest request, HttpSession session) throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 
 		String pageParam = request.getParameter("page");
 		if(pageParam==null || pageParam.equals("")){
@@ -1420,7 +1496,11 @@ public void setServerLock(boolean serverLock) {
  }
  
  @RequestMapping("/userOtpPretreatment.do")
- public String userOtpPretreatment(HttpServletRequest request) throws Exception{
+ public String userOtpPretreatment(HttpServletRequest request, HttpSession session) throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 
 		String pageParam = request.getParameter("page");
 		if(pageParam==null || pageParam.equals("")){
@@ -1895,7 +1975,11 @@ public void setServerLock(boolean serverLock) {
   return "approvalResult";
  }
  @RequestMapping("/approvalUserList.do")
- public String approvalUserList(HttpServletRequest request) throws Exception{
+ public String approvalUserList(HttpServletRequest request, HttpSession session) throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
   
 
   ArrayList<Request> requestList = new ArrayList<Request>();
@@ -1938,6 +2022,10 @@ public void setServerLock(boolean serverLock) {
  
  @RequestMapping("/outUserOtp.do")
  public String outUserOtp(HttpServletRequest request, HttpSession session) throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
   User user = new User();
   String userOtp;
   Boolean approval = false;
@@ -1960,7 +2048,11 @@ public void setServerLock(boolean serverLock) {
  
  
  @RequestMapping("/outUserApproval.do")
- public String outUserApproval(HttpServletRequest request) throws Exception{
+ public String outUserApproval(HttpServletRequest request, HttpSession session) throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
   
   String message = "승인요청 되었습니다.";
   User user = new User();
@@ -1998,7 +2090,11 @@ public void setServerLock(boolean serverLock) {
  }
  
  @RequestMapping("/CheckPeriodPwd.do")
- public String ChechPeriodPwd(HttpServletRequest request) throws Exception {
+ public String ChechPeriodPwd(HttpServletRequest request, HttpSession session) throws Exception {
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
   User user = new User();
   String userOtp;
   String outEndPerdate;
@@ -2019,6 +2115,10 @@ public void setServerLock(boolean serverLock) {
  
  @RequestMapping("/changePwd.do")
  public String changePwd(HttpServletRequest request, HttpSession session)throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
   
   ArrayList<User> list = new ArrayList<User>();
   
@@ -2083,6 +2183,10 @@ public void setServerLock(boolean serverLock) {
  
  @RequestMapping("/joinUserList.do")
 	public String joinUserList(HttpServletRequest request, HttpSession session)throws Exception {
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 
 	 String userId = (String)session.getAttribute("userId");
 	 if(!(userService.getUserType(userId).equals("super")))
@@ -2113,6 +2217,10 @@ public void setServerLock(boolean serverLock) {
  
  @RequestMapping("/approvalJoinReq.do")
 	public String approvalJoinReq(HttpServletRequest request, HttpSession session)throws Exception {
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 
 	 String[] userId;
 	 
@@ -2129,6 +2237,10 @@ public void setServerLock(boolean serverLock) {
  
 	@RequestMapping("/rejectJoinReq.do")
 	public String rejectJoinReq(HttpServletRequest request, HttpSession session)	throws Exception {
+		if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 		String[] userId;
 		
 		userId = request.getParameterValues("temp");
@@ -2143,7 +2255,11 @@ public void setServerLock(boolean serverLock) {
 	}
  
  @RequestMapping("/updateUser.do")
- public String updateUser(HttpServletRequest request, HttpSession session) throws Exception{	 
+ public String updateUser(HttpServletRequest request, HttpSession session) throws Exception{	
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 String userId, userType;
 	 User user = new User();
 	 
@@ -2182,6 +2298,11 @@ public void setServerLock(boolean serverLock) {
  
  @RequestMapping("/updateUserInfo.do")
  public String updateUserInfo(HttpServletRequest request, HttpSession session) throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
+	 
 	 String userId, userName, userPwd, userDepartment, userLevel, companyNumber, userEmail, phoneNumber;
 	 User user = new User();
 	 userId = session.getAttribute("userId").toString();	
@@ -2219,7 +2340,11 @@ public void setServerLock(boolean serverLock) {
  }
  
  @RequestMapping("outUserOtpRequest.do")
- public String outUserOtpRequest(HttpServletRequest request) throws Exception{
+ public String outUserOtpRequest(HttpServletRequest request, HttpSession session) throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 
 		String pageParam = request.getParameter("page");
 		if(pageParam==null || pageParam.equals("")){
@@ -2238,6 +2363,10 @@ public void setServerLock(boolean serverLock) {
  
  @RequestMapping("sendRequest.do")
  public String sendRequest(HttpServletRequest request, HttpSession session) throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 Request rq = new Request();
 	 String serverName, connectId, userId, requestDesc, pwdType;
 	
@@ -2268,6 +2397,10 @@ public void setServerLock(boolean serverLock) {
   
  @RequestMapping("userList.do")
  public String userList(HttpServletRequest request, HttpSession session) throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
     
   ArrayList<User> list = new ArrayList<User>();
   
@@ -2288,7 +2421,11 @@ public void setServerLock(boolean serverLock) {
  
  
  @RequestMapping("/userPeriodPwd.do")
- public String scheduled(HttpServletResponse response, HttpServletRequest request, HttpSession sesssion) throws Exception{
+ public String scheduled(HttpServletResponse response, HttpServletRequest request, HttpSession session) throws Exception{
+	 if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
   String userPeriodPwd;
   userPeriodPwd = firstOtp(); //OTP set
   return userPeriodPwd;

@@ -10,17 +10,20 @@
 <script src="<%=cp%>/js/jquery/1.10.4/jquery.js"></script>
 <script src="<%=cp%>/js/jquery/1.10.4/jquery-ui.js"></script>
 <script language="javascript">
+var intervalSecond = document.getElementById("intervalSecond").valueOf();
 function onLoadEvent() {
 	var el = document.getElementById('btn1');
-	
 	el.disabled = '';
 }
-window.onload = self.setTimeout(onLoadEvent, 42*1000);
+window.onload = alert(intervalSecond); 
+	//self.setTimeout(onLoadEvent, intervalSecond*1000);
+
 </script>	
 	<script>
   		$(function() {
 			var percent = 0;
 			var intervalSecond = parseInt($('#intervalSecond').val());
+			var el = document.getElementById('btn1');
 			if(isNaN(intervalSecond)){
 				intervalSecond = 10;
 			}

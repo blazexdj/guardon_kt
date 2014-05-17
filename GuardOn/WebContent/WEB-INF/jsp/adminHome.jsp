@@ -52,7 +52,7 @@
 	{
 	  var thissound = document.getElementById( soundname );
 	  thissound.play();
-	  alert( "Played " + soundname );
+	  alert( "비밀번호 발급 요청이 도착했습니다." );
 	}
 
 /*
@@ -74,6 +74,7 @@
     <div class="header"></div>
   <div class="sidebar1">
     <ul class="nav">
+    <li><a href="index.do">Home</a></li>
     <li><a href="joinUserList.do">회원가입 요청 리스트</a></li>
       <li><a href="approvalUserList.do">비밀번호 발급 요청 리스트</a></li>
       <li><a href="changeAllList.do">사용자 일괄-선택 비밀번호 발급</a></li>

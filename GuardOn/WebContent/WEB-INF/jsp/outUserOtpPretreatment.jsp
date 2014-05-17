@@ -19,15 +19,34 @@
 <script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/addons/pager/jquery.tablesorter.pager.js"></script>
 
 <script type="text/javascript">
+/*
+boolean checked = false;
+var count = 0;
+
+function check(){
+	for (var i = 0; i < document.check.checkList.length; i++) {
+		count++;
+		alert(count);
+	}
+}
+*/
 function emptyCheck(){
 	var form = document.forms['check'];
 	var check = document.check.connectId.value;
-	var serverName = document.check.checkList.value;
+	var checkList = document.check.checkList;
+	
+	for (var i = 0; i < checkList.length; i++) {
+		if (document.check.checkList[i].checked==true) {
+			break;
+		}
+	}
+	if (i==check) {
+		
+	}
 	
 	if(check==""||serverName==""){
 		alert("접속할 아이디 또는 서버를 체크 하세요");
-	}
-	if (check!=""&&serverName!="") {
+	}else if (check!=""&&serverName!="") {
 		form.action='userOtp.do';
 		form.submit();
 	}
@@ -115,7 +134,7 @@ $(function() {
         </thead>
          <c:forEach var="i" items="${serverList}">
          	<tr>
-              <td><input type="radio" name="checkList" value="${i.serverName}" /></td>
+              <td><input type="radio" name="checkList" value="${i.serverName}" onclick="check()"/></td>
               <td>${i.serverName}</td>
               <td class="server-ip">${i.ipAddress}</td>
               <td>${i.serverDesc}</td>

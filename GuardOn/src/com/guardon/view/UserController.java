@@ -1252,7 +1252,7 @@ public void setServerLock(boolean serverLock) {
 		 
 		 switch (array2[3]) {
 		case "period":
-			approved="period";
+			approved="approved";
 			serverName=map.get("serverName");
 			connectId=map.get("connectId");
 
@@ -1275,7 +1275,7 @@ public void setServerLock(boolean serverLock) {
 				break;
 		
 		case "OTP":
-			approved="OTP";
+			approved="approved";
 			map.put("approved", approved); 
 			requestService.updateApproved(map);
 			map.clear();

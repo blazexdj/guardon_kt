@@ -2,6 +2,8 @@
 <%
  String cp = request.getContextPath();
 %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,6 +28,7 @@
 			alert("입력사항을 모두 입력 하십시오");
 		}else{
 			form.action = 'getId.do';
+			form.method = 'POST';
 			form.submit();
 		}
 		/*
@@ -66,9 +69,9 @@
 
 <center>
 	<pre>
-이	름	<input type="text" name="userName" id="userName" />
+이	름	<input type="text" name="userName" id="userName" value=""/>
 <br/>
-사 번(업체명)	<input type="text" name="companyNumber" id="companyNumber" />
+사 번(업체명)	<input type="text" name="companyNumber" id="companyNumber" value=""/>
 </pre>
 
 <br/>

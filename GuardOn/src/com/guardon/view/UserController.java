@@ -398,7 +398,7 @@ public void setServerLock(boolean serverLock) {
  @RequestMapping("option.do")
  public String option(HttpServletRequest request){
 	 
-	 String loginFailedCount=null, otpTimeLimit=null, pwdLength=null, pwdComplexity=null, autoLogout=null;
+	 String loginFailedCount=null, otpTimeLimit=null, pwdLength=null, pwdComplexity=null, autoLogout=null, approvedTimeLimit=null;
 	 	
 	 try {
 			// autoLogout=String.valueOf(optionService.getAutoLogout());
@@ -406,6 +406,7 @@ public void setServerLock(boolean serverLock) {
 			otpTimeLimit = String.valueOf(optionService.getOtpTimeLimit());
 			pwdLength = String.valueOf(optionService.getPwdLength());
 			pwdComplexity = optionService.getPwdComplexity();
+			approvedTimeLimit = String.valueOf(optionService.getApprovedTimeLimit());
 		 
 		} catch (Exception e) {
 			e.printStackTrace();request.setAttribute("errorMessage", "설정 정보를 불러오는데 실패했습니다.");
@@ -416,6 +417,7 @@ public void setServerLock(boolean serverLock) {
 		request.setAttribute("otpTimeLimit", otpTimeLimit);
 		request.setAttribute("pwdLength", pwdLength);
 		request.setAttribute("pwdComplexity", pwdComplexity);
+		request.setAttribute("approvedTimeLimit", approvedTimeLimit);
 
 		return "option";
 
@@ -424,19 +426,21 @@ public void setServerLock(boolean serverLock) {
  @RequestMapping("updateOption.do")
  public String updateOption(HttpServletRequest request){
 	 String pwdComplexity;
-	 int pwdLength, otpTimeLimit, loginFailedCount;
+	 int pwdLength, otpTimeLimit, loginFailedCount, approvedTimeLimit;
 	 Option option = new Option();
 
 		try {
 			pwdLength = Integer.parseInt(request.getParameter("pwdLength"));
 			otpTimeLimit = Integer.parseInt(request.getParameter("otpTimeLimit"));
 			loginFailedCount = Integer.parseInt(request.getParameter("loginFailedCount"));
-			pwdComplexity = request.getParameter("pwdComplexity");			
+			pwdComplexity = request.getParameter("pwdComplexity");		
+			approvedTimeLimit = Integer.parseInt(request.getParameter("approvedTimeLimit"));
 
 			option.setPwdLength(pwdLength);
 			option.setOtpTimeLimit(otpTimeLimit);
 			option.setLoginFailedCount(loginFailedCount);
 			option.setPwdComplexity(pwdComplexity);
+			option.setApprovedTimeLimit(approvedTimeLimit);
 
 			optionService.updateOption(option);
 			

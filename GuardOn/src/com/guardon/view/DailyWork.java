@@ -61,7 +61,7 @@ public class DailyWork {
 
 	// @Scheduled(fixedDelay=5000)
 	
-	@Scheduled(cron="0 */1 * * * *")
+	@Scheduled(cron="0 */10 * * * *")
 	public void checkApproved() {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();		
@@ -112,7 +112,7 @@ public class DailyWork {
 			}
 			 
 			 requestService.expirePeriodPwd(today);
-			 requestService.expireOtpPwd();
+			 //requestService.expireOtpPwd();
 		}
 		catch (Exception e){
 			e.printStackTrace();

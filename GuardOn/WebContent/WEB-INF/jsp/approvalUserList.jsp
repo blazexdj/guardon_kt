@@ -104,14 +104,16 @@ $(function() {
      <table id="tablesorter-demo" class="tablesorter" border="0" cellpadding="0" cellspacing="1" width="780px">
      	<thead>
      	<tr>
-        	<th><input type="checkbox" id="checkboxAll" onchange="javascript:checkAll(this.checked);" /></th>
-            <th>서버명</th>
-            <th width="200">요청내용</th>
-            <th>접속아이디</th>
-            <th>사용자아이디</th>
+        	<th width="10"><input type="checkbox" id="checkboxAll" onchange="javascript:checkAll(this.checked);" /></th>
+            <th width="100">서버명</th>
+            <th width="350">요청내용</th>
+            <th width="100">접속아이디</th>
+            <th width="100">사용자아이디</th>
+            <!-- 
             <th>비밀번호 타입</th>
             <th>시작일</th>
             <th>종료일</th>
+             -->
         </tr>
         </thead>
          <c:forEach var="i" items="${requestList}">
@@ -121,9 +123,11 @@ $(function() {
               <td style="word-break:break-all">${i.requestDesc}</td>
               <td>${i.connectId}</td>
               <td>${i.userId}</td>
+              <!-- 
               <td>${i.pwdType}</td>
               <td>${i.startDate}</td>
               <td>${i.endDate}</td>
+               -->
            </tr>   
          </c:forEach>
      </table>

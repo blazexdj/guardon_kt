@@ -32,23 +32,27 @@ function check(){
 */
 function emptyCheck(){
 	var form = document.forms['check'];
-	var check = document.check.connectId.value;
-	var checkList = document.check.checkList;
+	var connectId = document.check.connectId.value;
+	var serverName = document.getElementsByName("checkList");
+	var check = false;
 	
-	for (var i = 0; i < checkList.length; i++) {
-		if (document.check.checkList[i].checked==true) {
+	for (var i = 0; i < serverName.length; i++) {
+		if (serverName[i].checked==true) {
+			check = true;
 			break;
 		}
 	}
-	if (i==check) {
-		
-	}
 	
-	if(check==""||serverName==""){
+	if(connectId==""||!check){
 		alert("접속할 아이디 또는 서버를 체크 하세요");
-	}else if (check!=""&&serverName!="") {
+	}else{
+		if (connectId=="administrator" || connectId=="Administrator"){
+			alert("해당 아이디는 사용할 수 없습니다.");
+		}
+		else{
 		form.action='userOtp.do';
 		form.submit();
+		}
 	}
 }
 </script>
@@ -134,7 +138,7 @@ $(function() {
         </thead>
          <c:forEach var="i" items="${serverList}">
          	<tr>
-              <td><input type="radio" name="checkList" value="${i.serverName}" onclick="check()"/></td>
+              <td><input type="radio" name="checkList" value="${i.serverName}" /></td>
               <td>${i.serverName}</td>
               <td class="server-ip">${i.ipAddress}</td>
               <td>${i.serverDesc}</td>

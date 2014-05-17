@@ -21,6 +21,33 @@
  
  
  <script type="text/javascript">
+ function emptyCheck(){
+		var form = document.forms['check'];
+		var connectId = document.check.connectId.value;
+		var requestDesc = document.check.requestDesc.value;
+		var serverName = document.getElementsByName("checkList");
+		var check = false;
+		
+		for (var i = 0; i < serverName.length; i++) {
+			if (serverName[i].checked==true) {
+				check = true;
+				break;
+			}
+		}
+		
+		if(requestDesc==""||connectId==""||!check){
+			alert("접속할 아이디, 요청 사유, 서버를 체크 하세요");
+		}else{
+			if (connectId=="administrator" || connectId=="Administrator"){
+				alert("해당 아이디는 사용할 수 없습니다.");
+			}
+			else{
+			form.action='outSendRequest.do';
+			form.submit();
+			}
+		}
+	}
+ 
  function fc_chk_byte(aro_name,ari_max)
  {
 
@@ -111,7 +138,7 @@
 	}
 	
 	function pageMove(){
-		location.href = "./dbList.do?page="+asyncPaging.options.currentPage;
+		location.href = "./outUserOtpRequest.do?page="+asyncPaging.options.currentPage;
 	}
 </script>
 <script type="text/javascript">
@@ -144,7 +171,7 @@ $(function() {
   <div class="content">
     <center>
     
-    <form action="outSendRequest.do" method="post">
+    <form action="outSendRequest.do" method="post" name="check">
 		<table id="tablesorter-demo" class="tablesorter" border="0" cellpadding="0" cellspacing="1">
 		<thead>
      	<tr>
@@ -185,7 +212,7 @@ $(function() {
 	</table>
 	<br/>
 	<br/>
-		  <input type="submit" value="OTP 발급 승인 요청" />
+		  <input type="button" value="OTP 발급 승인 요청" onclick="emptyCheck()" >
 		  <br/>
 		 	<br/>
 		</form>

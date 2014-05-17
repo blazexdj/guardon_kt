@@ -500,6 +500,11 @@ public void setServerLock(boolean serverLock) {
 	 else
 		 approved = "first";
 	 
+	 if (connectId.equals("administrator") || connectId.equals("Administrator") || connectId.equals(serverService.getServerId(serverName)))
+	 {
+		 request.setAttribute("errorMessage", "해당 아이디는 사용이 불가능합니다.");
+		 return "errorPage";
+	 }
 	 
 	 map.put("serverName", serverName);
 	 map.put("connectId", connectId);
@@ -515,7 +520,7 @@ public void setServerLock(boolean serverLock) {
 	 String approvedTemp = requestService.getOtpApproved(map);
 	 if (approvedTemp.equals("unchecked"))
 	 {
-		 request.setAttribute("errorMessage", "이미 진행중인 요청이 있습니다.\n관리자가 처리할 때까지 기다려주십시오.");
+		 request.setAttribute("errorMessage", "이미 진행중인 요청이 있습니다. 관리자가 처리할 때까지 기다려주십시오.");
 		 return "errorPage";
 	 }
 	 else if (approvedTemp.equals("approved"))
@@ -622,6 +627,12 @@ public void setServerLock(boolean serverLock) {
 			map.put("serverName", serverName);
 			map.put("connectId", connectId);
 			
+			
+			if (connectId.equals("administrator") || connectId.equals("Administrator") || connectId.equals(serverService.getServerId(serverName)))
+			 {
+				 request.setAttribute("errorMessage", "해당 아이디는 사용이 불가능합니다.");
+				 return "errorPage";
+			 }
 			if (!requestService.checkDuplReq(map).equals("0")) {
 				request.setAttribute("errorMessage",
 						"해당 서버와 아이디에 대해 이미 발급 된 비밀번호가 있거나 처리중인 요청이 있습니다.");
@@ -681,6 +692,11 @@ public void setServerLock(boolean serverLock) {
 		 map.put("serverName", serverName);
 		 map.put("connectId", connectId);
 		 
+		 if (connectId.equals("administrator") || connectId.equals("Administrator") || connectId.equals(serverService.getServerId(serverName)))
+		 {
+			 request.setAttribute("errorMessage", "해당 아이디는 사용이 불가능합니다.");
+			 return "errorPage";
+		 }
 			if (!requestService.checkDuplReq(map).equals("0")) {
 				request.setAttribute("errorMessage",
 						"해당 서버와 아이디에 대해 이미 발급 된 비밀번호가 있거나 처리중인 요청이 있습니다.");

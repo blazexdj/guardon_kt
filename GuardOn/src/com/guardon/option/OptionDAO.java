@@ -9,5 +9,6 @@ public interface OptionDAO {
 	public int getOtpTimeLimit() throws Exception;
 	public int getLoginFailedCount() throws Exception;
 	public String getPwdComplexity() throws Exception;
+	public int getApprovedTimeLimit() throws Exception;
 	
 }

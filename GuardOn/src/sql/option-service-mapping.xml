@@ -47,5 +47,10 @@
 		SELECT IFNULL(pwdComplexity, 'Low')
 		FROM tbl_option
 	</select>
+	
+	<select id="getApprovedTimeLimit" resultClass="int">
+		SELECT IFNULL(loginFailedCount, 60)
+		FROM tbl_option
+	</select>
 
 </sqlMap>

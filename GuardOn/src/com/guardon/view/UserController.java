@@ -310,16 +310,52 @@ public void setServerLock(boolean serverLock) {
  }
  
  @RequestMapping("getId.do")
- public String getId(HttpServletRequest request) throws Exception{
-	 String userName, companyNumber;
+ public String getId(HttpServletRequest request){
+	 String userName, companyNumber, userId=null;
+	 Map<String, String> map = new HashMap<>();
 	 userName = request.getParameter("userName");
 	 companyNumber = request.getParameter("companyNumber");
+	 
+	 map.put("userName", userName);
+	 map.put("companyNumber", companyNumber);
+	 
+	 if (serverLock) {
+		
+	}	 
+	 
+		try {
+			userId = userService.getId(map);
+			System.out.println(userId);
+			request.setAttribute("userId", userId);
+			return "getId";
+
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			request.setAttribute("message", "정보와 일치하는 아이디가 없습니다.");
+			return "interPage";
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("message", "요청을 처리할 수 없습니다.");
+			return "interPage";
+		}
+ }
+ 
+ @RequestMapping("findPwd.do")
+ public String findPwd(HttpServletRequest request) throws Exception{
+	 return "findPwd";
+ }
+ 
+ @RequestMapping("getPwd.do")
+ public String getPwd(HttpServletRequest request) throws Exception{
+	 String userId, userEmail;
+	 userId = request.getParameter("userId");
+	 userEmail = request.getParameter("userEmail");
 	 
 	 if (serverLock) {
 		
 	}
 	 
-	 return "getId";
+	 return "getPwd";
  }
  
  @RequestMapping("test.do")

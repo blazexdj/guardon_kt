@@ -1,6 +1,7 @@
 package com.guardon.user.impl;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -115,12 +116,18 @@ public class UserDAOImpl implements UserDAO {
 	public boolean isActive(String userId) throws Exception {
 		return (boolean) sqlMapClient.queryForObject("User.isActive", userId);
 	}
-
+		
+	@Override
+	public String getId(Map<String, String> map) throws Exception {
+		return (String) sqlMapClient.queryForObject("User.getId", map);
+	}
+		
+/*
 	@Override
 	public String getId(String userName, String companyNumber) throws Exception {
 		return (String) sqlMapClient.queryForObject("User.getId", userName, companyNumber);
 	}
-
+*/
 	@Override
 	public String getPwd(String userId, String userEmail) throws Exception {
 		return (String) sqlMapClient.queryForObject("User.getPwd", userId, userEmail);

@@ -1,6 +1,7 @@
 package com.guardon.user.impl;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -103,12 +104,18 @@ public class UserServiceImpl implements UserService {
 	public boolean isActive(String userId) throws Exception {
 		return userDAO.isActive(userId);
 	}
+	
+	@Override
+	public String getId(Map<String, String> map) throws Exception {
+		return userDAO.getId(map);
+	}
 
+	/*
 	@Override
 	public String getId(String userName, String companyNumber) throws Exception {
 		return userDAO.getId(userName, companyNumber);
 	}
-
+	 */
 	@Override
 	public String getPwd(String userId, String userEmail) throws Exception {
 		return userDAO.getPwd(userId, userEmail);

@@ -1,6 +1,7 @@
 package com.guardon.user;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.guardon.user.domain.User;
 
@@ -40,7 +41,9 @@ public interface UserService {
 
 	public boolean isActive(String userId) throws Exception;
 	
-	public String getId(String userName, String companyNumber) throws Exception;
+	public String getId(Map<String, String> map) throws Exception;
+	
+	//public String getId(String userName, String companyNumber) throws Exception;
 	
 	public String getPwd(String userId, String userEmail) throws Exception;
 

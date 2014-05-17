@@ -318,10 +318,9 @@ public void setServerLock(boolean serverLock) {
 	 
 	 map.put("userName", userName);
 	 map.put("companyNumber", companyNumber);
+	 System.out.println(userName);
+	 System.out.println(companyNumber);
 	 
-	 if (serverLock) {
-		
-	}	 
 	 
 		try {
 			userId = userService.getId(map);
@@ -351,9 +350,6 @@ public void setServerLock(boolean serverLock) {
 	 userId = request.getParameter("userId");
 	 userEmail = request.getParameter("userEmail");
 	 
-	 if (serverLock) {
-		
-	}
 	 
 	 return "getPwd";
  }

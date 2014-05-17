@@ -57,7 +57,7 @@
 <div class="container">
   <div class="header"><strong>
     <!-- end .header -->
-  Guard-ON</strong> 아이디 찾기</div>
+  Guard-ON</strong> 비밀번호 찾기</div>
 
   <div>
   <br/>
@@ -66,28 +66,30 @@
   <center>
   <h1>찾은 비밀번호 : ${userPwd}</h1>
   <h1>로그인</h1>
-<form name="findId" >
 
 <center>
-<div style="height: 100px">
 <form action="userLogin.do" method="post">
+<br/>
 <pre>
-i	   d	<input type="text" name="userId" id="userId" />
+아 이 디	<input type="text" name="userId" id="userId" />
 <br/>
-<br/>
-password	<input type="password" name="userPwd" id="userPwd" />
-<br/>
-<br/>
+비밀번호	<input type="password" name="userPwd" id="userPwd" />
 </pre>
-<input type="submit" value="Login" />
+<br/>
+<br/>
+<center>
+<input type="submit" value="Login" style="height:50px; width:100px;"/> 
+<a href="userJoin.do">
+<input type="button" value="회원가입" style="height:50px; width:100px;"/>
+</a>
+</center>
+<br/>
+<br/>
+<a href="findId.do" style="color: green;">아이디 찾기 </a>/<a href="findPwd.do" style="color: green;"> 비밀번호 찾기</a>
 </form>
-</div>
 <br/>
 <br/>
 </center>
-</form>
-<input type="button" onclick="sub()" value="로그인 하기" style="height:50px; width:100px;"/>
-<input type="button" onclick="sub1()" value="비밀번호 찾기" style="height:50px; width:100px;"/>
 <br/>
 <br/>
 </center>

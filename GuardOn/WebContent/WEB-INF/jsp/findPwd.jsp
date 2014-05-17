@@ -54,7 +54,7 @@
 <div class="container">
   <div class="header"><strong>
     <!-- end .header -->
-  Guard-ON</strong> 아이디 찾기</div>
+  Guard-ON</strong> 비밀번호 찾기</div>
 
   <div>
   <br/>
@@ -65,8 +65,8 @@
 <form name="findPwd">
 
 <center>
-	<pre>
-아 이 디	<input type="text" name="userId" id="userId" />
+<pre>
+아 이 디	 <input type="text" name="userId" id="userId" />
 <br/>
 E-mail	<input type="text" name="userEmail" id="userEmail" />
 </pre>
@@ -76,7 +76,7 @@ E-mail	<input type="text" name="userEmail" id="userEmail" />
 </center>
 </form>
 <input type="button" onclick="sub()" value="뒤로" style="height:50px; width:100px;"/>
-<input type="button" onclick="sub1()" value="아이디 찾기" style="height:50px; width:100px;"/>
+<input type="button" onclick="sub1()" value="비밀번호 찾기" style="height:50px; width:100px;"/>
 <br/>
 <br/>
 </center>

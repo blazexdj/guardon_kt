@@ -32,7 +32,7 @@
 <br/>
 <br/>
 <center>
-<input type="submit" value="Login" style="height:50px; width:100px;"/> 
+<input type="submit" value="로 그 인" style="height:50px; width:100px;"/> 
 <a href="userJoin.do">
 <input type="button" value="회원가입" style="height:50px; width:100px;"/>
 </a>

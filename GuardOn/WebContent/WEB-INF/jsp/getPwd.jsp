@@ -64,19 +64,24 @@
 <br/>
 <br/>
   <center>
-  <h1>찾은 아이디 : ${userId}</h1>
-  <h1>비밀번호 찾기</h1>
+  <h1>찾은 비밀번호 : ${userPwd}</h1>
+  <h1>로그인</h1>
 <form name="findId" >
 
 <center>
-	<pre>
-	
-아 이 디 <input type="text" name="userId" id="userId" value="${userId}"/>
+<div style="height: 100px">
+<form action="userLogin.do" method="post">
+<pre>
+i	   d	<input type="text" name="userId" id="userId" />
 <br/>
-E-Mail	<input type="text" name="userEmail" id="userEmail" value=""/>
-
+<br/>
+password	<input type="password" name="userPwd" id="userPwd" />
+<br/>
+<br/>
 </pre>
-
+<input type="submit" value="Login" />
+</form>
+</div>
 <br/>
 <br/>
 </center>

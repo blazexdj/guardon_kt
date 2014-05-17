@@ -140,15 +140,21 @@
 		FROM tbl_user
 		WHERE userName = #userName# AND companyNumber= #companyNumber#
 	</select>
-	<!-- 
-	<select id="getId" parameterClass="string" resultClass="string" >
-		SELECT userId
+
+	<select id="getPwd" parameterClass="map" resultClass="string" >
+		SELECT userPwd
+		FROM tbl_user
+		WHERE userId = #userId# AND userEmail= #userEmail#
+	</select>
+	
+	<select id="countId" parameterClass="map" resultClass="int" >
+		SELECT COUNT(userId)	
 		FROM tbl_user
 		WHERE userName = #userName# AND companyNumber= #companyNumber#
 	</select>
-	 -->
-	<select id="getPwd" parameterClass="string" resultClass="string" >
-		SELECT userPwd
+	
+	<select id="countPwd" parameterClass="map" resultClass="int" >
+		SELECT COUNT(userPwd)
 		FROM tbl_user
 		WHERE userId = #userId# AND userEmail= #userEmail#
 	</select>

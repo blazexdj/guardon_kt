@@ -43,8 +43,10 @@ public interface UserDAO {
 	
 	public String getId(Map<String, String> map) throws Exception;
 	
-	//public String getId(String userName, String companyNumber) throws Exception;
+	public int countId(Map<String, String> map) throws Exception;
 	
-	public String getPwd(String userId, String userEmail) throws Exception;
+	public int countPwd(Map<String, String> map) throws Exception;
+	
+	public String getPwd(Map<String, String> map) throws Exception;
 
 }

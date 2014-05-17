@@ -181,6 +181,46 @@
     	</td>
     
     </tr>
+    <tr>
+    <td height="47">
+    &nbsp;&nbsp;&nbsp;외부 사용자 OTP 허용 시 : <select name="approvedTimeLimit" id="approvedTimeLimit" >
+    <option
+    <c:if test='${approvedTimeLimit == "30" }'>selected="selected"</c:if>
+    value="30" > 30 분</option>
+    <option
+    <c:if test='${approvedTimeLimit == "60" }'>selected="selected"</c:if>
+    value="60" > 1 시간</option>
+    <option
+    <c:if test='${approvedTimeLimit == "90" }'>selected="selected"</c:if>
+    value="90" > 1 시간 30 분</option>
+    <option 
+    <c:if test='${approvedTimeLimit == "120" }'>selected="selected"</c:if>
+    value="120" > 2 시간 </option>
+    <option
+    <c:if test='${approvedTimeLimit == "180" }'>selected="selected"</c:if>
+    value="180" > 3 시간</option>
+    <option
+    <c:if test='${approvedTimeLimit == "240" }'>selected="selected"</c:if>
+    value="240" > 4 시간 </option>
+    <option
+    <c:if test='${approvedTimeLimit == "360" }'>selected="selected"</c:if>
+    value="360" > 6 시간 </option>
+    <option 
+    <c:if test='${approvedTimeLimit == "720" }'>selected="selected"</c:if>
+    value="720" > 12 시간 </option>
+    <option 
+    <c:if test='${approvedTimeLimit == "1440" }'>selected="selected"</c:if>
+    value="1440" > 24 시간 </option>
+    <option 
+    <c:if test='${approvedTimeLimit == "2160" }'>selected="selected"</c:if>
+    value="2160" > 36 시간 </option>
+    <option 
+    <c:if test='${approvedTimeLimit == "2880" }'>selected="selected"</c:if>
+    value="2880" > 48 시간 </option>     
+    
+    </select>
+    </td>
+    </tr>
     
     </table>
 <br>

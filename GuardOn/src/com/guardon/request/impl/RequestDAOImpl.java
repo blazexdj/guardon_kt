@@ -99,6 +99,11 @@ public class RequestDAOImpl implements RequestDAO{
 	public void expireOtpPwd() throws Exception {
 		sqlMapClient.update("Request.expireOtpPwd");
 	}
+	
+	@Override
+	public void expireOtpPwdByTime(String time) throws Exception {
+		sqlMapClient.update("Request.expireOtpPwdByTime", time);
+	}
 
 
 }

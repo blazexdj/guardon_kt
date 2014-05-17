@@ -45,5 +45,10 @@ public class OptionServiceImpl implements OptionService{
 	public String getPwdComplexity() throws Exception {
 		return optionDAO.getPwdComplexity();
 	}
+	
+	@Override
+	public int getApprovedTimeLimit() throws Exception {
+		return optionDAO.getApprovedTimeLimit();
+	}
 
 }

@@ -46,6 +46,11 @@ public class OptionDAOImpl implements OptionDAO{
 	public String getPwdComplexity() throws Exception {
 		return sqlMapClient.queryForObject("Option.getPwdComplexity").toString();
 	}
+	
+	@Override
+	public int getApprovedTimeLimit() throws Exception {
+		return (int) sqlMapClient.queryForObject("Option.getApprovedTimeLimit");
+	}
 
 
 }

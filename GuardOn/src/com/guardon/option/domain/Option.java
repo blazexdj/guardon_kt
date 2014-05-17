@@ -7,9 +7,16 @@ public class Option {
 	private int otpTimeLimit;
 	private int loginFailedCount;
 	private String pwdComplexity;
+	private int approvedTimeLimit;
 	
 	
 	
+	public int getApprovedTimeLimit() {
+		return approvedTimeLimit;
+	}
+	public void setApprovedTimeLimit(int approvedTimeLimit) {
+		this.approvedTimeLimit = approvedTimeLimit;
+	}
 	public int getPwdLength() {
 		return pwdLength;
 	}

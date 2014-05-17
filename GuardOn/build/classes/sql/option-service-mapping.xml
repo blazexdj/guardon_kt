@@ -11,7 +11,8 @@
 		<result property="autoLogout" column="autoLogout" />
 		<result property="otpTimeLimit" column="otpTimeLimit" />
 		<result property="loginFailedCount" column="loginFailedCount" />
-		<result property="pwdComplexity" column="pwdComplexity" />		
+		<result property="pwdComplexity" column="pwdComplexity" />
+		<result property="approvedTimeLimit" column="approvedTimeLimit" />		
 	</resultMap>
 	
 	
@@ -20,7 +21,8 @@
 		SET pwdLength = #pwdLength#,
 		otpTimeLimit = #otpTimeLimit#,
 		loginFailedCount = #loginFailedCount#,
-		pwdComplexity = #pwdComplexity#
+		pwdComplexity = #pwdComplexity#,
+		approvedTimeLimit = #approvedTimeLimit#
 	</update>
 	
 	<select id="getPwdLength" resultClass="int">
@@ -45,6 +47,11 @@
 	
 	<select id="getPwdComplexity" resultClass="string">
 		SELECT IFNULL(pwdComplexity, 'Low')
+		FROM tbl_option
+	</select>
+	
+	<select id="getApprovedTimeLimit" resultClass="int">
+		SELECT IFNULL(approvedTimeLimit, 30)
 		FROM tbl_option
 	</select>
 

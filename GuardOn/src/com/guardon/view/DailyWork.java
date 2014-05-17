@@ -60,6 +60,38 @@ public class DailyWork {
 	OptionService optionService;
 
 	// @Scheduled(fixedDelay=5000)
+	
+	@Scheduled(cron="0 */10 * * * *")
+	public void checkApproved() {
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();		
+		GregorianCalendar gc = new GregorianCalendar();		
+		int approvedTimeLimit, atlMinute, atlHour;
+		String time;
+		
+		try {
+			approvedTimeLimit = optionService.getApprovedTimeLimit();
+			
+			atlMinute = approvedTimeLimit % 60;
+			atlHour = approvedTimeLimit / 60;
+
+			gc.add(gc.MINUTE, atlMinute*(-1));
+			gc.add(gc.HOUR, atlHour*(-1));
+			date = gc.getTime();
+			
+			time = df.format(date);
+			
+			requestService.expireOtpPwdByTime(time);
+			
+			
+			System.out.println(approvedTimeLimit);
+			System.out.println(time);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Scheduled(cron="0 0 1 * * *")
 	public void test(){		
 		
@@ -80,7 +112,7 @@ public class DailyWork {
 			}
 			 
 			 requestService.expirePeriodPwd(today);
-			 requestService.expireOtpPwd();
+			 //requestService.expireOtpPwd();
 		}
 		catch (Exception e){
 			e.printStackTrace();

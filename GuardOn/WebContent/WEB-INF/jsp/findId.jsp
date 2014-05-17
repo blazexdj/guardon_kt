@@ -80,6 +80,9 @@
 </form>
 <input type="button" onclick="sub()" value="뒤로" style="height:50px; width:100px;"/>
 <input type="button" onclick="sub1()" value="아이디 찾기" style="height:50px; width:100px;"/>
+<a href="userJoin.do">
+<input type="button" value="회원가입" style="height:50px; width:100px;"/>
+</a>
 <br/>
 <br/>
 </center>

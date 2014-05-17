@@ -178,26 +178,26 @@ addLoadEvent(function() {
        </tr>
 
         <tr>
-          <td width="150" class="table2"><font class="h2">&nbsp;이 름</font></td>
+          <td width="150" class="table2"><font class="h2">&nbsp;이 름</font><font class="h2" color="red">&nbsp;(*)</font></td></td>
           <td class="table3"><input type="text" name="userName" class="format" style="width:200px; height:20px;"/></td>
           <td width="150" rowspan="2" class="table3"><div id="InsertUser_image" style="background: url('<%=cp%>/images/user/noperson.jpg') no-repeat center ;
                        background-size: 150px 200px;"></div></td>
         </tr>
         <tr>
-          <td class="table2" ><font class="h2">&nbsp;아이디</font></td>
+          <td class="table2" ><font class="h2">&nbsp;아이디</font><font class="h2" color="red">&nbsp;(*)</font></td></td>
           <td class="table3"><input type="text" name="userId" id="userId" class="format" style="width:200px; height:20px;"/>&nbsp; <!-- onkeyup="idduplicate('./checkUserId.do')" -->
           <input type="button" value="중복체크" class="button" style="width:100px; height:22px;" onClick="idduplicate('./checkUserId.do')"/>
 				<span id="userIdCheck"></span>
           </tr>
 
         <tr>
-          <td class="table2"><font class="h2">&nbsp;비밀번호</font></td>
+          <td class="table2"><font class="h2">&nbsp;비밀번호</font><font class="h2" color="red">&nbsp;(*)</font></td></td>
           <td class="table3"><input type="password" name="userPwd" class="format" style="width:200px; height:20px;"
           onkeyup="verify.check()"/></td>
           <td class="table3">&nbsp;</td>
         </tr>
         <tr>
-          <td class="table2"><font class="h2">&nbsp;비밀번호 확인</font></td>
+          <td class="table2"><font class="h2">&nbsp;비밀번호 확인</font><font class="h2" color="red">&nbsp;(*)</font></td></td>
           <td class="table3"><input type="password" name="confirmPwd" class="format" style="width:200px; height:20px;"
           onkeyup="verify.check()"/></td>
           <td class="table3">&nbsp;</td>
@@ -211,7 +211,7 @@ addLoadEvent(function() {
         
         
         <tr>
-          <td class="table2"><font class="h2">&nbsp;가입자 속성</font></td>
+          <td class="table2"><font class="h2">&nbsp;가입자 속성</font>><font class="h2" color="red">&nbsp;(*)</font></td>
           <td class="table3"><input type="radio" name="userType" value="admin" /> 관리자
           						 <input type="radio" name="userType" value="user" checked="checked"/> 내부사용자
 							 	 <input type="radio" name="userType" value="outUser" /> 외부사용자
@@ -220,27 +220,27 @@ addLoadEvent(function() {
         </tr>
         
         <tr>
-          <td class="table2" ><font class="h2">&nbsp;부서</font></td>
+          <td class="table2" ><font class="h2">&nbsp;부서</font><font class="h2" color="red">&nbsp;(*)</font></td>
           <td class="table3"><input type="text" name="userDepartment" id="userDepartment" class="format"/></td>
         </tr>
         <tr>
-          <td class="table2" ><font class="h2">&nbsp;직급</font></td>
+          <td class="table2" ><font class="h2">&nbsp;직급</font>><font class="h2" color="red">&nbsp;(*)</font></td>
           <td class="table3"><input type="text" name="userLevel" id="userLevel" class="format"/></td>
         </tr>
         <tr>
-         <td class="table2" ><font class="h2">&nbsp;사번</font></td>
+         <td class="table2" ><font class="h2">&nbsp;사번</font><font class="h2" color="red">&nbsp;(*)</font></td>
          <td class="table3"><input type="text" name="companyNumber" id="companyNumber" class="format" style="width:200px; height:20px;"/>  
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
          <font color="blue">(외부직원 해당 업체명 입력)</font>
         </tr>
         <tr>
-          <td class="table2"><font class="h2">&nbsp;E-MAIL</font></td>
+          <td class="table2"><font class="h2">&nbsp;E-MAIL</font><font class="h2" color="red">&nbsp;(*)</font></td>
           <td class="table3"><input name="userEmail" type="text" style="width:200px; height:20px;" value="" class="format"/>
      </td>
           <td class="table3">&nbsp;</td>
         </tr>
         <tr>
-        <td class="table2"><font class="h2">&nbsp;전화번호</font></td>
+        <td class="table2"><font class="h2">&nbsp;전화번호</font><font class="h2" color="red">&nbsp;(*)</font></td>
           <td class="table3"><select name="phoneNumber" class="select" style="width:100px; height:25px;">
         <option value="010" >&nbsp; &nbsp;010&nbsp; &nbsp;</option>
         <option value="011" >&nbsp; &nbsp;011&nbsp; &nbsp;</option>
@@ -257,8 +257,8 @@ addLoadEvent(function() {
       </table>
       <br>
    <div id="apDiv1">
-  <input type="button" value="가입" class="button" onclick="submitForm();"/>
-  <input type="button" value="취소" class="button" onclick="submitForm2();" />
+  <input type="button" value="가입" class="button" onclick="submitForm();" style="height:50px; width:100px;"/>
+  <input type="button" value="취소" class="button" onclick="submitForm2();" style="height:50px; width:100px; " />
   <br>
   <br>
    </div>

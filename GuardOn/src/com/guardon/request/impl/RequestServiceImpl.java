@@ -98,6 +98,11 @@ public class RequestServiceImpl implements RequestService{
 	public void expireOtpPwd() throws Exception {
 		requestDAO.expireOtpPwd();
 	}
+	
+	@Override
+	public void expireOtpPwdByTime(String time) throws Exception {
+		requestDAO.expireOtpPwdByTime(time);
+	}
 
 
 }

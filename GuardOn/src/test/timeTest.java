@@ -15,7 +15,7 @@ public class timeTest {
 		String time, now;
 		
 		try {
-			approvedTimeLimit = 140;
+			approvedTimeLimit = 5;
 			
 			atlMinute = approvedTimeLimit % 60;
 			atlHour = approvedTimeLimit / 60;

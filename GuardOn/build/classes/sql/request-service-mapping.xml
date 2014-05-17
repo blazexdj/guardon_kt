@@ -127,5 +127,11 @@
 		UPDATE tbl_request SET approved='expired'
 		WHERE approved='approved' AND pwdType='OTP'
 	</update>
+	
+	<update id="expireOtpPwdByTime" parameterClass="string">
+		UPDATE tbl_request 
+		SET approved='expired'
+		WHERE approved='approved' AND pwdType='OTP' AND approvalDate &lt; #value#
+	</update>
 
 </sqlMap>

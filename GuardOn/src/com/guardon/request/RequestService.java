@@ -22,4 +22,5 @@ public interface RequestService {
 	public ArrayList<Request> getExpirePeriodPwdTarget(String today) throws Exception;
 	public void expirePeriodPwd(String today) throws Exception;
 	public void expireOtpPwd() throws Exception;
+	public void expireOtpPwdByTime(String time) throws Exception;
 }

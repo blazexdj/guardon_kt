@@ -321,17 +321,21 @@ public void setServerLock(boolean serverLock) {
 	 System.out.println(userName);
 	 System.out.println(companyNumber);
 	 
-	 
+
 		try {
 			userId = userService.getId(map);
 			System.out.println(userId);
 			request.setAttribute("userId", userId);
-			return "getId";
+			if (userService.countId(map)==1) {
+				userId = userService.getId(map);
+				System.out.println("aaaaaaaaaaa : "+userId);
+				request.setAttribute("userId", userId);
+				return "getId";	
+			}else{
+				request.setAttribute("message", "해당 아이디가 존재하지 않습니다.");
+				return "interPage";
+			}		
 
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-			request.setAttribute("message", "정보와 일치하는 아이디가 없습니다.");
-			return "interPage";
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("message", "요청을 처리할 수 없습니다.");
@@ -346,13 +350,35 @@ public void setServerLock(boolean serverLock) {
  
  @RequestMapping("getPwd.do")
  public String getPwd(HttpServletRequest request) throws Exception{
-	 String userId, userEmail;
+	 String userId, userEmail, userPwd;
+	 Map<String, String> map = new HashMap<>();
 	 userId = request.getParameter("userId");
 	 userEmail = request.getParameter("userEmail");
+	 map.put("userId", userId);
+	 map.put("userEmail", userEmail);
 	 
+	 System.out.println(userId);
+	 System.out.println(userEmail);
 	 
-	 return "getPwd";
- }
+
+		try {
+			if (userService.countPwd(map)==1) {
+				userPwd = userService.getPwd(map);
+				System.out.println("aaaaaaaaaaa : "+userPwd);
+				return "getPwd";	
+			}else{
+				request.setAttribute("message", "요청 실패! userId 또는 Email을 확인 하십시오.");
+				return "interPage";
+			}
+			
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("message", "요청을 처리할 수 없습니다.");
+			return "interPage";
+		}
+	  }
  
  @RequestMapping("test.do")
  //@Scheduled(fixedDelay=5000)
@@ -1939,6 +1965,8 @@ public void setServerLock(boolean serverLock) {
 		
 		case "outUser":
 			return "outUserHome";	
+		case "super":
+			return "superHome";
 			
 		default:
 			break;

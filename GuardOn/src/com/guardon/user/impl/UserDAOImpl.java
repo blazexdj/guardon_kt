@@ -122,15 +122,19 @@ public class UserDAOImpl implements UserDAO {
 		return (String) sqlMapClient.queryForObject("User.getId", map);
 	}
 		
-/*
 	@Override
-	public String getId(String userName, String companyNumber) throws Exception {
-		return (String) sqlMapClient.queryForObject("User.getId", userName, companyNumber);
+	public String getPwd(Map<String, String> map) throws Exception {
+		return (String) sqlMapClient.queryForObject("User.getPwd", map);
 	}
-*/
+
 	@Override
-	public String getPwd(String userId, String userEmail) throws Exception {
-		return (String) sqlMapClient.queryForObject("User.getPwd", userId, userEmail);
+	public int countId(Map<String, String> map) throws Exception {
+		return (int) sqlMapClient.queryForObject("User.countId", map);
+	}
+
+	@Override
+	public int countPwd(Map<String, String> map) throws Exception {
+		return (int) sqlMapClient.queryForObject("User.countPwd", map);
 	}
 
 }

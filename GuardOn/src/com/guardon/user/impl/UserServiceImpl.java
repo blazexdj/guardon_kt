@@ -117,8 +117,18 @@ public class UserServiceImpl implements UserService {
 	}
 	 */
 	@Override
-	public String getPwd(String userId, String userEmail) throws Exception {
-		return userDAO.getPwd(userId, userEmail);
+	public String getPwd(Map<String, String> map) throws Exception {
+		return userDAO.getPwd(map);
+	}
+
+	@Override
+	public int countId(Map<String, String> map) throws Exception {
+		return userDAO.countId(map);
+	}
+
+	@Override
+	public int countPwd(Map<String, String> map) throws Exception {
+		return userDAO.countPwd(map);
 	}
 
 }

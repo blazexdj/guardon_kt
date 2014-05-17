@@ -364,7 +364,7 @@ public void setServerLock(boolean serverLock) {
 		try {
 			if (userService.countPwd(map)==1) {
 				userPwd = userService.getPwd(map);
-				System.out.println("aaaaaaaaaaa : "+userPwd);
+				request.setAttribute("userPwd", userPwd);
 				return "getPwd";	
 			}else{
 				request.setAttribute("message", "요청 실패! userId 또는 Email을 확인 하십시오.");

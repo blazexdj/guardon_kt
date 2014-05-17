@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="<%=cp%>/style/basic.css" type="text/css" media="print, projection, screen" />
 
 <script type="text/javascript">
+		
 		function onlyNumber(event) {
 		    var key = window.event ? event.keyCode : event.which;    
 		
@@ -106,6 +107,8 @@ function verifynotify(field1, field2, result_id, match_html, nomatch_html) {
     if (!document.getElementById){ return false; }
     r = document.getElementById(this.result_id);
     if (!r){ return false; }
+    
+    
 
     if (this.field1.value != "" && this.field1.value == this.field2.value) {
       r.innerHTML = this.match_html;
@@ -185,7 +188,7 @@ addLoadEvent(function() {
         </tr>
         <tr>
           <td class="table2" ><font class="h2">&nbsp;아이디</font><font class="h2" color="red">&nbsp;(*)</font></td></td>
-          <td class="table3"><input type="text" name="userId" id="userId" class="format" style="width:200px; height:20px;"/>&nbsp; <!-- onkeyup="idduplicate('./checkUserId.do')" -->
+          <td class="table3"><input type="text" name="userId" id="userId" class="format" style="width:200px; height:20px;" onkeyup="this.value=this.value.replace(/[^a-z0-9]/g,'')"/>&nbsp; <!-- onkeyup="idduplicate('./checkUserId.do')" -->
           <input type="button" value="중복체크" class="button" style="width:100px; height:22px;" onClick="idduplicate('./checkUserId.do')"/>
 				<span id="userIdCheck"></span>
           </tr>
@@ -213,7 +216,7 @@ addLoadEvent(function() {
         <tr>
           <td class="table2"><font class="h2">&nbsp;가입자 속성</font>><font class="h2" color="red">&nbsp;(*)</font></td>
           <td class="table3"><input type="radio" name="userType" value="admin" /> 관리자
-          						 <input type="radio" name="userType" value="user" checked="checked"/> 내부사용자
+          						<!--  <input type="radio" name="userType" value="user" checked="checked"/> 내부사용자 -->
 							 	 <input type="radio" name="userType" value="outUser" /> 외부사용자
 		   </td>
           <td class="table3">&nbsp;</td>

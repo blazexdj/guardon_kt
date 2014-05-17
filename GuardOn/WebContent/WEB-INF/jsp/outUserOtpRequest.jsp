@@ -177,8 +177,8 @@ $(function() {
      <tr>
      	<th>요청 사유 </th>
      	<td>
-     	<textarea name="requestDesc" id="requestDesc" rows="3" cols="60" onkeyup="fc_chk_byte(this,100);" onkeyup="fc_chk2()" onkeypress="fc_chk2()"></textarea>
-     	<label id="type_num">0</label> / 100bytes
+     	<textarea name="requestDesc" id="requestDesc" rows="3" cols="60" onkeyup="fc_chk_byte(this,500);" onkeyup="fc_chk2()" onkeypress="fc_chk2()"></textarea>
+     	<label id="type_num">0</label> / 500bytes
      	</td>
      </tr>      
 		

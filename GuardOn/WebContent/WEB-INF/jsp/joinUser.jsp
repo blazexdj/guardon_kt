@@ -49,7 +49,13 @@
 			if(userType==""||userDepartment==""||userLevel==""||companyNumber==""||userEmail==""||userCp2==""||userCp3==""){
 				alert("빈항목이 있는지 체크 하십시오!");
 			}
-			if(userPwd==confirmPwd&&userPwd!=""&&confirmPwd!=""&&userType!=""&&userDepartment!=""&&userLevel!=""&&
+			else if (userPwd.length < 5 && userPwd.length > 12 ) {
+				alert("비밀번호는 6자 이상 12자 미만 입력해야 합니다.");
+			}
+			else if(!userPwd.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/)){
+				alert("비밀번호 조합확인");
+			}
+			else if(userPwd==confirmPwd&&userPwd!=""&&confirmPwd!=""&&userType!=""&&userDepartment!=""&&userLevel!=""&&
 					companyNumber!=""&&userEmail!=""&&userCp2!=""&&userCp3!=""){
 				form.action = 'insertUser.do';
 				form.submit();
@@ -107,9 +113,6 @@ function verifynotify(field1, field2, result_id, match_html, nomatch_html) {
     if (!document.getElementById){ return false; }
     r = document.getElementById(this.result_id);
     if (!r){ return false; }
-    
-    
-
     if (this.field1.value != "" && this.field1.value == this.field2.value) {
       r.innerHTML = this.match_html;
     } else {

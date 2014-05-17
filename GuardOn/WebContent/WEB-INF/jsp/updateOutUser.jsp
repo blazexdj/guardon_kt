@@ -37,10 +37,16 @@ function sub() {
 	if(userDepartment==""||userLevel==""||companyNumber==""||userEmail==""||userCp2==""||userCp3==""){
 		alert("빈항목이 있는지 체크 하십시오!");
 	}
-	if(valPwd==true&&userPwd!=""&&confirmPwd!=""&&userDepartment!=""&&userLevel!=""&&
+	else if (userPwd.length < 5 && userPwd.length > 12 ) {
+		alert("비밀번호는 6자 이상 12자 미만 입력해야 합니다.");
+	}
+	else if(!userPwd.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/)){
+		alert("비밀번호 조합확인");
+	}
+	else if(userPwd==confirmPwd&&userPwd!=""&&confirmPwd!=""&&userDepartment!=""&&userLevel!=""&&
 			companyNumber!=""&&userEmail!=""&&userCp2!=""&&userCp3!=""){
-	form.action = 'updateUserInfo.do';
-	form.submit();
+		form.action = 'updateUserInfo.do';
+		form.submit();
 	}
 	else{ 
 		alert("비밀번호 또는 아이디 중복 체크를 확인하십시오");

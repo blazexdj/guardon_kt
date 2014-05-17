@@ -2078,6 +2078,15 @@ public void setServerLock(boolean serverLock) {
  
  @RequestMapping("/joinUserList.do")
 	public String joinUserList(HttpServletRequest request, HttpSession session)throws Exception {
+	 
+	 String userId = (String)session.getAttribute("userId");
+	 if(!(userService.getUserType(userId).equals("super")))
+	 {
+		 request.setAttribute("errorMessage", "최고 관리자만 접근할 수 있습니다.");
+			return "errorPage";
+	 }
+	 
+	 
 		ArrayList<User> joinUserList = new ArrayList<User>();
 
 		String pageParam = request.getParameter("page");
@@ -2158,8 +2167,12 @@ public void setServerLock(boolean serverLock) {
 		 return "updateUser";
 	 else if (userType.equals("outUser"))
 		 return "updateOutUser";
-	 else
-		 return ""; //userType이 위 셋 중 아니면 어떻게 에러처리????
+	 else if (userType.equals("super"))
+		 return "updateAdmin"; 
+	 else{
+		 request.setAttribute("errorMessage", "요청을 처리할 수 없습니다.");
+		return "errorPage";
+	 }
  }
  
  @RequestMapping("/updateUserInfo.do")

@@ -488,12 +488,23 @@ public void setServerLock(boolean serverLock) {
 	 Map<String, String> map = new HashMap<>();
 	 
 	 String serverName, connectId, userId, requestDesc, pwdType, approved;
+	 String approvedTemp;
 	
 	 serverName = request.getParameter("checkList");
 	 connectId = request.getParameter("connectId");
 	 userId = (String)session.getAttribute("userId");
 	 requestDesc = request.getParameter("requestDesc");
 	 pwdType = "OTP";
+	 
+	 map.put("serverName", serverName);
+	 map.put("connectId", connectId);
+	 map.put("userId", userId);
+	 try {
+		 approvedTemp = requestService.getOtpApproved(map);
+	 } catch (Exception e) {
+		 e.printStackTrace();
+		 approvedTemp = "";
+	 }
 	 try {
 	 if (serverService.getWorkflowName(serverName).equals("none"))
 		 approved = "unchecked";
@@ -506,9 +517,7 @@ public void setServerLock(boolean serverLock) {
 		 return "errorPage";
 	 }
 	 
-	 map.put("serverName", serverName);
-	 map.put("connectId", connectId);
-	 map.put("userId", userId);
+	 
 	 
 	 /*
 	 if (!requestService.checkDuplReq(map).equals("0"))
@@ -517,7 +526,7 @@ public void setServerLock(boolean serverLock) {
 		 return "errorPage";
 	 }
 	 */
-	 String approvedTemp = requestService.getOtpApproved(map);
+	 
 	 if (approvedTemp.equals("unchecked"))
 	 {
 		 request.setAttribute("errorMessage", "이미 진행중인 요청이 있습니다. 관리자가 처리할 때까지 기다려주십시오.");

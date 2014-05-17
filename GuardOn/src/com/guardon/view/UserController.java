@@ -305,7 +305,11 @@ public void setServerLock(boolean serverLock) {
  }
  
  @RequestMapping("findId.do")
- public String findId(HttpServletRequest request) throws Exception{
+	public String findId(HttpServletRequest request, HttpSession session)	throws Exception {
+		if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "errorPage";
+		}
 	 return "findId";
  }
  
@@ -409,7 +413,8 @@ public void setServerLock(boolean serverLock) {
 			approvedTimeLimit = String.valueOf(optionService.getApprovedTimeLimit());
 		 
 		} catch (Exception e) {
-			e.printStackTrace();request.setAttribute("errorMessage", "설정 정보를 불러오는데 실패했습니다.");
+			e.printStackTrace();
+			request.setAttribute("errorMessage", "설정 정보를 불러오는데 실패했습니다.");
 			return "errorPage";
 		}
 		// request.setAttribute("autoLogout", autoLogout);

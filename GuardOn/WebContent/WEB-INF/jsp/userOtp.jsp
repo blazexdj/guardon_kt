@@ -12,14 +12,21 @@
 <script src="<%=cp%>/js/jquery/1.10.4/jquery.js"></script>
 <script src="<%=cp%>/js/jquery/1.10.4/jquery-ui.js"></script>
 <script language="javascript">
+/*
 function onLoadEvent() {
 	var el = document.getElementById('btn1');
 	
 	el.disabled = '';
-}
-window.onload = self.setTimeout(onLoadEvent, 42*1000);
+} */
+//window.onload = self.setTimeout(onLoadEvent, 42*1000);
 </script>	
 <script>
+
+		function onLoadEvent() {
+			var el = document.getElementById('btn1');
+			el.disabled = '';
+		}
+
   		$(function() {
 			var percent = 0;
 			var intervalSecond = parseInt($('#intervalSecond').val());
@@ -35,6 +42,7 @@ window.onload = self.setTimeout(onLoadEvent, 42*1000);
 				percent = percent + 0.1;
 				if(percent >= 100){
 					clearInterval(interval);
+					onLoadEvent();
 					//document.userOtp.submit();
 				}
 			}, intervalSecond); // 0.01s

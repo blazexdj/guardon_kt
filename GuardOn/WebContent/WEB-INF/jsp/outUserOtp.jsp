@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String cp=request.getContextPath(); %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,16 +12,30 @@
 <script src="<%=cp%>/js/jquery/1.10.4/jquery.js"></script>
 <script src="<%=cp%>/js/jquery/1.10.4/jquery-ui.js"></script>
 <script language="javascript">
-var intervalSecond = document.getElementById("intervalSecond").valueOf();
-function onLoadEvent() {
-	var el = document.getElementById('btn1');
-	el.disabled = '';
-}
-window.onload = alert(intervalSecond); 
+/*
+	var intervalSecond = parseInt($('#intervalSecond').val());
+	//var intervalSecond = document.userOtp.intervalSecond.value;
+		function onLoadEvent() {
+		var el = document.getElementById('btn1');
+		el.disabled = '';
+	}
+	//window.onload = alert(intervalSecond); 
 	//self.setTimeout(onLoadEvent, intervalSecond*1000);
-
+*/
 </script>	
-	<script>
+	<script language="javascript">
+	var check =0;
+		function onLoadEvent() {	
+			var el = document.getElementById('btn1');
+			if (check==0) {
+				//alert("aaaaaaa");
+				check=check+1;
+				setTimeout(onLoadEvent(), 5*1000);
+			}else{
+			el.disabled = '';
+			}
+		}
+	
   		$(function() {
 			var percent = 0;
 			var intervalSecond = parseInt($('#intervalSecond').val());
@@ -36,7 +52,8 @@ window.onload = alert(intervalSecond);
 				percent = percent + 0.1;
 				if(percent >= 100){
 					clearInterval(interval);
-					//document.userOtp.submit();
+					//onLoadEvent();
+					onLoadEvent();
 				}
 			}, intervalSecond); // 0.01s
   		});
@@ -81,6 +98,7 @@ window.onload = alert(intervalSecond);
     <br/>
     <form action="userOtp.do" name="userOtp" method="post">
    		<input type="submit" id="btn1" value="재발급" style="height:50px; width:100px;" disabled="disabled"/>
+   		<input id="intervalSecond" name="intervalSecond" type="hidden" value="${second}" />
     </form>
     </center>
 
@@ -99,6 +117,6 @@ window.onload = alert(intervalSecond);
     <p>Trust. Technology. Service</p>
     <!-- end .footer --></div>
   <!-- end .container --></div>
-  <input id="intervalSecond" type="hidden" value="${second}" />
+ 
 </body>
 </html>

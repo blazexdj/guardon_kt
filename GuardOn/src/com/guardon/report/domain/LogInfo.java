@@ -11,7 +11,15 @@ public class LogInfo {
 	private int requestCount;
 	private int approvalCount;
 	private int rejectCount;
+	private String companyNumber;
 	
+	
+	public String getCompanyNumber() {
+		return companyNumber;
+	}
+	public void setCompanyNumber(String companyNumber) {
+		this.companyNumber = companyNumber;
+	}
 	public String getUserName() {
 		return userName;
 	}

@@ -146,9 +146,16 @@ public class DailyWork {
 					dirNameMonth = sdFormat.format(nowMonth)+"월";							
 					*/
 					
+					DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+					 GregorianCalendar gc = new GregorianCalendar();
+					 gc.add(gc.DATE, -1);
+					 Date date = gc.getTime();
+					 excelFileName = df.format(date);
+					/*
 					sdFormat = new SimpleDateFormat("yyyy.MM.dd");
 					nowDate = new Date();
 					excelFileName = sdFormat.format(nowDate);
+					*/
 					excelFileName += ".xls";
 					
 					File reportFile = new File(dirPath + excelFileName);				
@@ -402,9 +409,10 @@ public class DailyWork {
 		 sheet.setColumnView(0, 15);
 		 sheet.setColumnView(1, 15);
 		 sheet.setColumnView(2, 10);
-		 sheet.setColumnView(3, 10);
+		 sheet.setColumnView(3, 15);
 		 sheet.setColumnView(4, 10);
-		 sheet.setColumnView(5, 20);
+		 sheet.setColumnView(5, 10);
+		 sheet.setColumnView(6, 20);
 		 /*
 		 sheet.setColumnView(6, 20);	 
 		 sheet.setColumnView(7, 10);
@@ -418,11 +426,13 @@ public class DailyWork {
 		 sheet.addCell(label);
 		 label = new Label(2, 0, "사용자 이름", menuFormat);
 		 sheet.addCell(label);
-		 label = new Label(3, 0, "부서", menuFormat);
+		 label = new Label(3, 0, "업체 / 사번", menuFormat);
 		 sheet.addCell(label);
-		 label = new Label(4, 0, "직책", menuFormat);
+		 label = new Label(4, 0, "부서", menuFormat);
 		 sheet.addCell(label);
-		 label = new Label(5, 0, "로그인 시간", menuFormat);
+		 label = new Label(5, 0, "직책", menuFormat);
+		 sheet.addCell(label);
+		 label = new Label(6, 0, "로그인 시간", menuFormat);
 		 sheet.addCell(label);
 		 /*
 		 label = new Label(6, 0, "로그아웃 시간", menuFormat);
@@ -438,6 +448,9 @@ public class DailyWork {
 			for (int i = 0; i < ALLI.size(); i++) {
 				
 				switch (ALLI.get(i).getUserType()) {
+				case "super":
+					userType="최고관리자";
+					break;
 				case "admin":
 					userType="관리자";
 					break;
@@ -457,11 +470,13 @@ public class DailyWork {
 		 	sheet.addCell(label);
 		 	label = new Label(2, i+1, ALLI.get(i).getUserName(), dataFormat);
 		 	sheet.addCell(label);
-		 	label = new Label(3, i+1, ALLI.get(i).getUserDepartment(), dataFormat);
+		 	label = new Label(3, i+1, ALLI.get(i).getCompanyNumber(), dataFormat);
 			sheet.addCell(label);
-			label = new Label(4, i+1, ALLI.get(i).getUserLevel(), dataFormat);
+		 	label = new Label(4, i+1, ALLI.get(i).getUserDepartment(), dataFormat);
+			sheet.addCell(label);
+			label = new Label(5, i+1, ALLI.get(i).getUserLevel(), dataFormat);
 			sheet.addCell(label);				
-			label = new Label(5, i+1, ALLI.get(i).getLoginTime(), dataFormat);
+			label = new Label(6, i+1, ALLI.get(i).getLoginTime(), dataFormat);
 			sheet.addCell(label);
 			
 			/*
@@ -517,17 +532,18 @@ public class DailyWork {
 		 sheet.setColumnView(0, 15);
 		 sheet.setColumnView(1, 15);
 		 sheet.setColumnView(2, 10);
-		 sheet.setColumnView(3, 10);
+		 sheet.setColumnView(3, 15);
 		 sheet.setColumnView(4, 10);
-		 sheet.setColumnView(5, 15);
+		 sheet.setColumnView(5, 10);
 		 sheet.setColumnView(6, 15);
 		 sheet.setColumnView(7, 15);
-		 sheet.setColumnView(8, 20);
+		 sheet.setColumnView(8, 15);
 		 sheet.setColumnView(9, 20);
-		 sheet.setColumnView(10, 15);
+		 sheet.setColumnView(10, 20);
 		 sheet.setColumnView(11, 15);
+		 sheet.setColumnView(12, 15);
 		 //sheet.setColumnView(12, 10);
-		 sheet.setColumnView(12, 20);
+		 sheet.setColumnView(13, 20);
 				
 		 label = new Label(0, 0, "사용자 유형", menuFormat);
 		 sheet.addCell(label);
@@ -535,34 +551,39 @@ public class DailyWork {
 		 sheet.addCell(label);
 		 label = new Label(2, 0, "사용자 이름", menuFormat);
 		 sheet.addCell(label);
-		 label = new Label(3, 0, "부서", menuFormat);
+		 label = new Label(3, 0, "업체 / 사번", menuFormat);
 		 sheet.addCell(label);
-		 label = new Label(4, 0, "직책", menuFormat);
+		 label = new Label(4, 0, "부서", menuFormat);
 		 sheet.addCell(label);
-		 label = new Label(5, 0, "패스워드 유형", menuFormat);
+		 label = new Label(5, 0, "직책", menuFormat);
 		 sheet.addCell(label);
-		 label = new Label(6, 0, "요청 서버", menuFormat);
+		 label = new Label(6, 0, "패스워드 유형", menuFormat);
 		 sheet.addCell(label);
-		 label = new Label(7, 0, "사용 ID", menuFormat);
+		 label = new Label(7, 0, "요청 서버", menuFormat);
 		 sheet.addCell(label);
-		 label = new Label(8, 0, "요청 시간", menuFormat);
+		 label = new Label(8, 0, "사용 ID", menuFormat);
 		 sheet.addCell(label);
-		 label = new Label(9, 0, "승인/반려 시간", menuFormat);
+		 label = new Label(9, 0, "요청 시간", menuFormat);
 		 sheet.addCell(label);
-		 label = new Label(10, 0, "승인 여부", menuFormat);
+		 label = new Label(10, 0, "승인/반려 시간", menuFormat);
 		 sheet.addCell(label);
-		 label = new Label(11, 0, "관리자 ID", menuFormat);
+		 label = new Label(11, 0, "승인 여부", menuFormat);
+		 sheet.addCell(label);
+		 label = new Label(12, 0, "관리자 ID", menuFormat);
 		 sheet.addCell(label);
 		 /*
 		 label = new Label(12, 0, "관리자 이름", menuFormat);
 		 sheet.addCell(label);
 		 */
-		 label = new Label(12, 0, "요청 내용", menuFormat);
+		 label = new Label(13, 0, "요청 내용", menuFormat);
 		 sheet.addCell(label);	 
 		 
 		 for (int i = 0; i < ALAI.size(); i++)
 		 {				
 			 switch (ALAI.get(i).getUserType()) {
+			 case "super":
+					userType="최고관리자";
+					break;
 				case "admin":
 					userType="관리자";
 					break;
@@ -610,23 +631,25 @@ public class DailyWork {
 		 	sheet.addCell(label);
 		 	label = new Label(2, i+1, ALAI.get(i).getUserName(), dataFormat);
 		 	sheet.addCell(label);
-		 	label = new Label(3, i+1, ALAI.get(i).getUserDepartment(), dataFormat);
+		 	label = new Label(3, i+1, ALAI.get(i).getCompanyNumber(), dataFormat);
 			sheet.addCell(label);
-			label = new Label(4, i+1, ALAI.get(i).getUserLevel(), dataFormat);
+		 	label = new Label(4, i+1, ALAI.get(i).getUserDepartment(), dataFormat);
+			sheet.addCell(label);
+			label = new Label(5, i+1, ALAI.get(i).getUserLevel(), dataFormat);
 			sheet.addCell(label);				
-			label = new Label(5, i+1, pwdType, dataFormat);
+			label = new Label(6, i+1, pwdType, dataFormat);
 			sheet.addCell(label);
-			label = new Label(6, i+1, ALAI.get(i).getServerName(), dataFormat);
+			label = new Label(7, i+1, ALAI.get(i).getServerName(), dataFormat);
 			sheet.addCell(label);
-			label = new Label(7, i+1, ALAI.get(i).getConnectId(), dataFormat);
+			label = new Label(8, i+1, ALAI.get(i).getConnectId(), dataFormat);
 			sheet.addCell(label);
-			label = new Label(8, i+1, ALAI.get(i).getRequestDate(), dataFormat);
+			label = new Label(9, i+1, ALAI.get(i).getRequestDate(), dataFormat);
 			sheet.addCell(label);
-			label = new Label(9, i+1, ALAI.get(i).getApprovalDate(), dataFormat);
+			label = new Label(10, i+1, ALAI.get(i).getApprovalDate(), dataFormat);
 			sheet.addCell(label);
-			label = new Label(10, i+1, approved, dataFormat);
+			label = new Label(11, i+1, approved, dataFormat);
 			sheet.addCell(label);
-			label = new Label(11, i+1, ALAI.get(i).getApprovalId(), dataFormat);
+			label = new Label(12, i+1, ALAI.get(i).getApprovalId(), dataFormat);
 			sheet.addCell(label);
 			/*
 			String approverId = userService.getUserName(ALAI.get(i).getApprovalId());
@@ -637,7 +660,7 @@ public class DailyWork {
 			
 			sheet.addCell(label);
 			*/
-			label = new Label(12, i+1, ALAI.get(i).getRequestDesc(), dataFormat);
+			label = new Label(13, i+1, ALAI.get(i).getRequestDesc(), dataFormat);
 			sheet.addCell(label);
 				
 		 }	

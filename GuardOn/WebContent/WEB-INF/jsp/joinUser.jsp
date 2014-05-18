@@ -200,7 +200,7 @@ addLoadEvent(function() {
           <td class="table2"><font class="h2">&nbsp;비밀번호</font><font class="h2" color="red">&nbsp;(*)</font></td></td>
           <td class="table3"><input type="password" name="userPwd" class="format" style="width:200px; height:20px;"
           onkeyup="verify.check()"/></td>
-          <td class="table3">&nbsp;</td>
+          <td class="table3">&nbsp;</td>           
         </tr>
         <tr>
           <td class="table2"><font class="h2">&nbsp;비밀번호 확인</font><font class="h2" color="red">&nbsp;(*)</font></td></td>
